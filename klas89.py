@@ -1,6 +1,7 @@
 from importlib.util import source_hash
+from multiprocessing.connection import answer_challenge
 
-
+"""
 class Animal:
 
     def __init__(self, name, age):
@@ -148,3 +149,63 @@ animal3.info()
 animal4.info()
 animal5.info()
 animal6.info()
+"""
+
+"""
+try:
+    x = int(input("Введи число:  "))
+    print(10 / x)
+except ZeroDivisionError:
+    print("НЕ можна ділити на 0")
+except ValueError:
+    print("Треба виводити число")
+else:
+    print("Все добре, число:", x)
+finally:
+    print("Дякую")
+
+"""
+
+
+class BankAccount:
+
+    def __init__(self, money):
+        self.money = money
+
+
+    def withdraw(self, amount):
+
+        if amount < 0:
+            raise ValueError("Не можна знімати мінус")
+
+        if amount > self.money:
+            raise ValueError("Недостатньо грошей")
+
+        if amount == 0:
+            raise ValueError("Помилка!")
+
+        if amount > self.money:
+            need = amount - self.money
+            answer = input("Недостатньо коштів. Взяти кредит на", need, "грн? (так/ні)")
+
+
+
+        self.money -= amount
+
+        print("Знято:", amount)
+        print("Залишок:", self.money)
+
+    def add_money(self, amount):
+
+        if amount < 0:
+            raise ValueError("Помилка!")
+
+
+account = BankAccount(100)
+
+try:
+    take = int(input("Скільки зняти? "))
+    account.withdraw(take)
+
+except ValueError as e:
+    print("Помилка:", e)
